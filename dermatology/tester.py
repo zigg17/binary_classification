@@ -5,7 +5,6 @@ import torchvision.models as models
 import torch
 from torch import nn
 from torchvision import transforms
-import certifi
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
