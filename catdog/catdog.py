@@ -14,13 +14,13 @@ ssl._create_default_https_context = ssl._create_unverified_context
 root = tk.Tk()
 root.title("Image Classifier")
 
-# Assuming 'YourModelClass' is the class of your model
+# Assuming 'YourModelClass' is the class of your model 
 model = models.resnet34(weights='IMAGENET1K_V1')
 model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
 num_ftrs = model.fc.in_features
 num_classes = 1
 model.fc = nn.Linear(num_ftrs, num_classes)
-state_dict = torch.load('catdog1.pth', map_location=torch.device('cpu'))  # Load the state dictionary
+state_dict = torch.load('models/catdog1.pth', map_location=torch.device('cpu'))  # Load the state dictionary
 model.load_state_dict(state_dict)  # Load the state dictionary into the model
 model.eval()  # Set the model to evaluation mode
 
