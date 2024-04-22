@@ -19,4 +19,6 @@ This dataset contains 10,000 images of different dermastopic images with labels 
 | nv   | 142    |  0.014     |
 | vasc    | 115     |0.011     |
 
+Upon viewing the dataset, I made a goal to make a multiclass classification program which utlized a CNN created through PyTorch. Throughout my experiments, I made changes (not all cataloged) to my program to better classify between groups.
+
 ## Experiments:
