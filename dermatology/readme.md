@@ -57,4 +57,5 @@ Upon looking at the proportional representation of the classes further, I realiz
 
 ### Future directions:
 1) Create 2 neural networks, the first a binary classification network to differentiate between melanocytic nevi and everything else, essentially creating a binary classification network that determines whether or not the area of skin is pathological. Then a second network that serves as a multiclass classification between the different pathologies that which is run depending on the results of the first. 
+
 ![Flowchart](images/flowchart.png)
