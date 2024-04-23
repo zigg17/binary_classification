@@ -58,6 +58,8 @@ Upon looking at the proportional representation of the classes further, I realiz
 ### Future directions:
 1) Create 2 neural networks, the first a binary classification network to differentiate between melanocytic nevi and everything else, essentially creating a binary classification network that determines whether or not the area of skin is pathological. Then a second network that serves as a multiclass classification between the different pathologies that which is run depending on the results of the first. 
 
-![Flowchart](images/flowchart.png)
+<div align="center">
+  <img src="images/flowchart.png" alt="description of image">
+</div>
 
 2) Make adjustments to the dataset to ensure a greater weight or representation is added to the more disproportiate classes. I'll need to do more research as I have no experience in dataset manipulations in the context of machine learning. 
