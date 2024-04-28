@@ -32,13 +32,14 @@ My first model had resnet34 architecture adjusted to compensate for just 2 class
 The first model displayed fast training and quick diveregence. So for this experiment I decided to decrease epoch count while maintaining the current model complexity. This model showed impressive metrics, however, I think the metrics I'm using to evaluate my model could be expanded upon.
 ### Accuracy Plot:
 <div align="center">
-  <img src="models/experiment0/accuracy_plot.png" alt="accuracy plot">
+  <img src="models/experiment1/accuracy_plot.png" alt="accuracy plot">
 </div>
 
 ### Loss Plot:
 <div align="center">
-  <img src="models/experiment0/accuracy_plot.png" alt="accuracy plot">
+  <img src="models/experiment1/loss_plot.png" alt="accuracy plot">
 </div>
 
 ### Future Directions:
-1) I want to explore other metrics. While loss and accuracy good measures to have in an arsenal of other measures, it shouldn't be the only measures used. I want to include confusion matrices, recall, precision, and specificity. I plan on adding these measures in future experiments.
+1) I want to explore other metrics. While loss and accuracy good measures to have in an arsenal of other measures, it shouldn't be the only measures used. I want to include confusion matrices, recall, precision, and specificity. I plan on adding these measures in future experiments. Additionally, If I'm looking to deploy these models, I want to have greater certainty and that can only be obtained through a more nuanced and in-depth evaluation phase.
+2) Due to the rapid divergence, I may want to reduce the complexity of my CNN to resnet18 and increase the epochs of which it's trained on. This may help for better generalization to novel image sets.
