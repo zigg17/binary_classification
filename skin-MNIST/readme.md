@@ -19,7 +19,7 @@ This dataset contains 10,000 images of different dermastopic images with labels 
 | vasc   | 142    |  0.014     |
 | df     | 115     |0.011     |
 
-Upon viewing the dataset, I made a goal to make a multiclass classification program which utlized a convolutional neural network (CNN)created through PyTorch. Throughout my experiments, I made changes (not all cataloged) to my program to better classify between groups.
+Upon viewing the dataset, I made a goal to make a multiclass classification program which utlized a convolutional neural network (CNN) created through PyTorch. Throughout my experiments, I made changes (not all cataloged) to my program to better classify between groups.
 # Data Cleaning:
 Basic data cleaning and setup occurred in the [dataproc.ipynb](dataproc.ipynb). Image files were sorted into class folders in preparation for conversion into training and testing datasets down the road.
 # Experiment 0:
