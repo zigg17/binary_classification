@@ -26,10 +26,15 @@ Basic data cleaning and setup occurred in the [dataproc.ipynb](dataproc.ipynb). 
 My first model had resnet34 architecture adjusted to compensate for 7 classes. Additionally, the model came with pretrained weights, with the weight set orignating from ImageNet-1K. The first experiment showed issues with divergence of both the losses and accuracies starting at around epoch 1. 
 
 ### Accuracy Plot:
-![Loss0](models/experiment0/accuracy_plot.png)
+<div align="center">
+  <img src="models/experiment0/accuracy_plot.png" alt="accuracy plot">
+</div>
 
 ### Loss Plot:
-![Accuracy0](models/experiment0/loss_plot.png)
+
+<div align="center">
+  <img src="models/experiment0/loss_plot.png" alt="loss plot">
+</div>
 
 ### Troubleshooting:
 One glance at my graphs and it's apparent that there's an issue with overfitting with my model. My first steps were to look at the proportions of classes in my training vs. testing datasets, as some of my classes were small and variations created from chance could have a profound effect. The proportions returned the following:
@@ -60,7 +65,7 @@ Upon looking at the proportional representation of the classes further, I realiz
 1) Create 2 neural networks, the first a binary classification network to differentiate between melanocytic nevi and everything else, essentially creating a binary classification network that determines whether or not the area of skin is pathological. Then a second network that serves as a multiclass classification between the different pathologies that which is run depending on the results of the first. 
 
 <div align="center">
-  <img src="images/flowchart.png" alt="description of image">
+  <img src="images/flowchart.png" alt="flowchart">
 </div>
 
 2) Make adjustments to the dataset to ensure a greater weight or representation is added to the more disproportiate classes. I'll need to do more research as I have no experience in dataset manipulations in the context of machine learning. 
