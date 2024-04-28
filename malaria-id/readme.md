@@ -24,3 +24,21 @@ My first model had resnet34 architecture adjusted to compensate for just 2 class
 <div align="center">
   <img src="models/experiment0/loss_plot.png" alt="accuracy plot">
 </div>
+
+### Future Directions:
+* I noticed that the network trained quickly, in fact after 2 epochs the training accuracies and losses diverged. To compensate for this, I'll either reduce the model complexity of my current architecure and maintain the current epoch count or decrease epochs and maintain the current model complexity. 
+
+# Experiment 1: 
+The first model displayed fast training and quick diveregence. So for this experiment I decided to decrease epoch count while maintaining the current model complexity. This model showed impressive metrics, however, I think the metrics I'm using to evaluate my model could be expanded upon.
+### Accuracy Plot:
+<div align="center">
+  <img src="models/experiment0/accuracy_plot.png" alt="accuracy plot">
+</div>
+
+### Loss Plot:
+<div align="center">
+  <img src="models/experiment0/accuracy_plot.png" alt="accuracy plot">
+</div>
+
+### Future Directions:
+1) I want to explore other metrics. While loss and accuracy good measures to have in an arsenal of other measures, it shouldn't be the only measures used. I want to include confusion matrices, recall, precision, and specificity. I plan on adding these measures in future experiments.
