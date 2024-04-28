@@ -19,7 +19,7 @@ This dataset contains 10,000 images of different dermastopic images with labels 
 | vasc   | 142    |  0.014     |
 | df     | 115     |0.011     |
 
-Upon viewing the dataset, I made a goal to make a multiclass classification program which utlized a CNN created through PyTorch. Throughout my experiments, I made changes (not all cataloged) to my program to better classify between groups.
+Upon viewing the dataset, I made a goal to make a multiclass classification program which utlized a convolutional neural network (CNN)created through PyTorch. Throughout my experiments, I made changes (not all cataloged) to my program to better classify between groups.
 # Data Cleaning:
 Basic data cleaning and setup occurred in the [dataproc.ipynb](dataproc.ipynb). Image files were sorted into class folders in preparation for conversion into training and testing datasets down the road.
 # Experiment 0:
@@ -64,3 +64,4 @@ Upon looking at the proportional representation of the classes further, I realiz
 </div>
 
 2) Make adjustments to the dataset to ensure a greater weight or representation is added to the more disproportiate classes. I'll need to do more research as I have no experience in dataset manipulations in the context of machine learning. 
+3)  There are many different routes that one has to take when evaluating models. Right now I think the metrics through which I'm evaluating my models need to have more depth. Loss and accuracy only provide a small insight into the capabilities and efficacy of a model, in my next experiments, I plan on including confusion matrices, along with calculations for recall, precision, and specificity.
