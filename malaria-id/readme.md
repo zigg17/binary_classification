@@ -1,5 +1,5 @@
 # Malaria Cell Classification:
-The dataset I'll be training on was compiled by the NIH, it was derived from nine studies examining 714 patients. These studies assembled 27,558 images of cells that are either healthy or infected with malaria. The images used for training were created through capturing images through an eyepiece of a microscope and then processing them through a series of [neural networks](https://ieeexplore.ieee.org/document/9244549). A few cells can be seen here:
+The dataset I'll be training on was compiled by the NIH, it was derived from nine studies examining 714 patients. These studies assembled 27,558 images of cells that were either healthy or infected with malaria. The images used for training were created through capturing images through an eyepiece of a microscope and then processing them through a series of [neural networks](https://ieeexplore.ieee.org/document/9244549). A few cells can be seen here:
 
 <div align="center">
   <img src="images/cells.png" alt="cell image" width="500"> 
