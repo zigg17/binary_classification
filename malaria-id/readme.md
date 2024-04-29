@@ -1,5 +1,5 @@
 # Malaria Cell Classification:
-The dataset I'll be training on was compiled by the NIH, it was derived and compiled from nine studies examining 714 patients. These studies compiled 27,558 images of cells that are either infected or uninfected with malaria. The images used for training were created through capturing images through an eyepiece of a microscope and then processing them through a series of [neural networks](https://ieeexplore.ieee.org/document/9244549). A few cells can be seen here:
+The dataset I'll be training on was compiled by the NIH, it was derived from nine studies examining 714 patients. These studies assembled 27,558 images of cells that are either infected or uninfected with malaria. The images used for training were created through capturing images through an eyepiece of a microscope and then processing them through a series of [neural networks](https://ieeexplore.ieee.org/document/9244549). A few cells can be seen here:
 
 <div align="center">
   <img src="images/cells.png" alt="cell image" width="500"> 
@@ -54,4 +54,4 @@ I switched to higher epochs and lowered the complexity of the network as highlig
 </div>
 
 ### Future directions:
-* Now that I have access to more diagnostic criteria, I want to begin to tune the model accordingly. In this circumstance, where false negatives have a much more drastic outcomes, I want to tune the model to minimize false negatives. While this may increase production of false positives, the outcomes are far less impactful.
+* Now that I have access to more diagnostic criteria, I want to begin to tune the model accordingly. In this circumstance, false negatives have a much more drastic outcomes, an undiagnosed patient is a patient who would miss vital treatments and further disease spread. With this in mind, I want to incur data manipulations prior to the testing phase that bias the model in a direction that minimizes false negatives. While this will increase the likelihood of false positives, a false positive would have less dire consequences.
