@@ -54,4 +54,4 @@ I switched to higher epochs and lowered the complexity of the network as highlig
 </div>
 
 ### Future directions:
-* Now that I have access to more diagnostic criteria, I want to begin to tune the model accordingly. In this circumstance, false negatives have a much more drastic outcomes, an undiagnosed patient is a patient who would miss vital treatments and further disease spread. With this in mind, I want to incur data manipulations prior to the testing phase that bias the model in a direction that minimizes false negatives. While this will increase the likelihood of false positives, a false positive would have less dire consequences.
+* Now that I have access to more diagnostic criteria, I want to begin to tune the model accordingly. In this circumstance, false negatives have a much more drastic outcomes, an undiagnosed patient would miss vital treatments and contribute to the propogation of disease. With this in mind, I want to incur data manipulations prior to the testing phase that bias the model in a direction that minimizes false negatives. While this will increase the likelihood of false positives, a false positive would have less dire consequences.
