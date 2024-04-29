@@ -8,7 +8,7 @@ The dataset I'll be training on was compiled by the NIH, it was derived and comp
 
 I set out to train a network that examines the processed cells to determine whether or not they are infected with malaria. To begin, I examined the proportions of the cells present, and the proportions were exactly equal:
 
-| Class    | Image Count|Proportion|
+| Class    |Image Count|Proportion|
 |----------|----------|----------|
 | Infected | 13779    | 0.50     |
 |Uninfected| 13779    |0.50      |
@@ -26,10 +26,11 @@ My first model had resnet34 architecture adjusted to compensate for just 2 class
 </div>
 
 ### Future Directions:
-* I noticed that the network trained quickly, in fact after 2 epochs the training accuracies and losses diverged. To compensate for this, I'll either reduce the model complexity of my current architecure and maintain the current epoch count or decrease epochs and maintain the current model complexity. 
+* I noticed that the network trained quickly, in fact after 2 epochs the training accuracies and losses diverged. To compensate for this, I'll either reduce the model complexity of my current architecure and maintain the current epoch count or decrease epochs and maintain the current model complexity.
 
 # Experiment 1: 
 The first model displayed fast training and quick diveregence. So for this experiment I decided to decrease epoch count while maintaining the current model complexity. This model showed impressive metrics, however, I think the metrics I'm using to evaluate my model could be expanded upon.
+
 ### Accuracy Plot:
 <div align="center">
   <img src="models/experiment1/accuracy_plot.png" alt="accuracy plot">
@@ -43,3 +44,14 @@ The first model displayed fast training and quick diveregence. So for this exper
 ### Future Directions:
 1) I want to explore other metrics. While loss and accuracy good measures to have in an arsenal of other measures, it shouldn't be the only measures used. I want to include confusion matrices, recall, precision, and specificity. I plan on adding these measures in future experiments. Additionally, If I'm looking to deploy these models, I want to have greater certainty and that can only be obtained through a more nuanced and in-depth evaluation phase.
 2) Due to the rapid divergence, I may want to reduce the complexity of my CNN to resnet18 and increase the epochs of which it's trained on. This may help for better generalization to novel image sets.
+
+# Experiment 2:
+I switched to higher epochs and lowered the complexity of the network as highlighted in the future directions of the previous experiment. Additionally, I added more measures to examine the different facets of the model's prediction capacities. The model trained well, reaching around 96% for accuracy, recall, precision, and speceficity. Additionally, the confusion matrix highlighted that while there is some error, the model is able to differentiate between positive cases and negative cases effectively. 
+
+### Model Metrics:
+<div align="center">
+  <img src="models/experiment2/metrics_comparison.png" alt="accuracy plot">
+</div>
+
+### Future directions:
+* Now that I have access to more diagnostic criteria, I want to begin to tune the model accordingly. In this circumstance, where false negatives have a much more drastic outcomes, I want to tune the model to minimize false negatives. While this may increase production of false positives, the outcomes are far less impactful.
