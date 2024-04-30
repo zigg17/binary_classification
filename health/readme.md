@@ -6,7 +6,7 @@ This portion of the repository is meant to showcase my initial work with data an
 ## Breast Cancer Classifier:
 
 ## Pneumonia Classifier:
-* Experiment 1: 
+This model is designed to classify chest X-ray images into two categories: healthy and pneumonia-infected. The architecture of the model is ResNet-18, with the fully connected layer repurposed for binary classification, having only one neuron. The experiment
 
 ## COVID-19 Predictor:
 
