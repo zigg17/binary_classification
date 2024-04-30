@@ -6,12 +6,12 @@ This portion of the repository is meant to showcase my initial work with data an
 ## Breast Cancer Classifier:
 
 ## Pneumonia Classifier:
-### Experiment 1:
+* Experiment 1: 
 
 ## COVID-19 Predictor:
 
 ## Malaria Cell Classifier: 
-### Expreiment 1: 
+* Expreiment 1: 
 
 ## Obesity Risk Calculator:
 
