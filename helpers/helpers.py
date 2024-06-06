@@ -41,124 +41,80 @@ def modelzoo(model):
    
   match model:
     case "resnet18":
-      return models.resnet18(weights='IMAGENET1K_V1')
+      return models.resnet18(weights='IMAGENET1K_V1'), "res"
     
     case "resnet34":
-      return models.resnet34(weights='IMAGENET1K_V1')
+      return models.resnet34(weights='IMAGENET1K_V1'), "res"
     
     case "resnet50":
-      return models.resnet50(weights='IMAGENET1K_V1')
+      return models.resnet50(weights='IMAGENET1K_V1'), "res"
     
     case "resnet101":
-      return models.resnet101(weights='IMAGENET1K_V1')
+      return models.resnet101(weights='IMAGENET1K_V1'), "res"
     
     case "resnet152":
-      return models.resnet152(weights='IMAGENET1K_V1')
+      return models.resnet152(weights='IMAGENET1K_V1'), "res"
     
     case "vgg11":
-      return models.vgg11(pretrained=True)
+      return models.vgg11(weights='IMAGENET1K_V1'), "vgg"
     
     case "vgg13":
-      return models.vgg13(pretrained=True)
+      return models.vgg13(weights='IMAGENET1K_V1'), "vgg"
     
     case "vgg16":
-      return models.vgg16(pretrained=True)
+      return models.vgg16(weights='IMAGENET1K_V1'), "vgg"
     
     case "vgg19":
-      return models.vgg19(pretrained=True)
+      return models.vgg19(weights='IMAGENET1K_V1'), "vgg"
     
     case "alexnet":
-      return models.alexnet(pretrained=True)
+      return models.alexnet(weights='IMAGENET1K_V1'), "alex"
     
     case "squeezenet1_0":
-      return models.squeezenet1_0(pretrained=True)
+      return models.squeezenet1_0(weights='IMAGENET1K_V1'), "squeeze"
     
     case "squeezenet1_1":
-      return models.squeezenet1_1(pretrained=True)
+      return models.squeezenet1_1(weights='IMAGENET1K_V1'), "squeeze"
     
     case "densenet121":
-      return models.densenet121(pretrained=True)
+      return models.densenet121(weights='IMAGENET1K_V1'), "dense"
     
     case "densenet169":
-      return models.densenet169(pretrained=True)
+      return models.densenet169(weights='IMAGENET1K_V1'), "dense"
     
     case "densenet201":
-      return models.densenet201(pretrained=True)
+      return models.densenet201(weights='IMAGENET1K_V1'), "dense"
     
     case "densenet161":
-      return models.densenet161(pretrained=True)
-    
-    case "inception_v3":
-      return models.inception_v3(pretrained=True)
-    
-    case "googlenet":
-      return models.googlenet(pretrained=True)
-    
-    case "shufflenet_v2_x0_5":
-      return models.shufflenet_v2_x0_5(pretrained=True)
-    
-    case "shufflenet_v2_x1_0":
-      return models.shufflenet_v2_x1_0(pretrained=True)
-    
-    case "shufflenet_v2_x1_5":
-      return models.shufflenet_v2_x1_5(pretrained=True)
-    
-    case "shufflenet_v2_x2_0":
-      return models.shufflenet_v2_x2_0(pretrained=True)
-    
-    case "mobilenet_v2":
-      return models.mobilenet_v2(pretrained=True)
-    
-    case "resnext50_32x4d":
-      return models.resnext50_32x4d(pretrained=True)
-    
-    case "resnext101_32x8d":
-      return models.resnext101_32x8d(pretrained=True)
-    
-    case "wide_resnet50_2":
-      return models.wide_resnet50_2(pretrained=True)
-    
-    case "wide_resnet101_2":
-      return models.wide_resnet101_2(pretrained=True)
-    
-    case "mnasnet0_5":
-      return models.mnasnet0_5(pretrained=True)
-    
-    case "mnasnet0_75":
-      return models.mnasnet0_75(pretrained=True)
-    
-    case "mnasnet1_0":
-      return models.mnasnet1_0(pretrained=True)
-    
-    case "mnasnet1_3":
-      return models.mnasnet1_3(pretrained=True)
-    
-    case "efficientnet_b0":
-      return models.efficientnet_b0(pretrained=True)
-    
-    case "efficientnet_b1":
-      return models.efficientnet_b1(pretrained=True)
-    
-    case "efficientnet_b2":
-      return models.efficientnet_b2(pretrained=True)
-    
-    case "efficientnet_b3":
-      return models.efficientnet_b3(pretrained=True)
-    
-    case "efficientnet_b4":
-      return models.efficientnet_b4(pretrained=True)
-    
-    case "efficientnet_b5":
-      return models.efficientnet_b5(pretrained=True)
-    
-    case "efficientnet_b6":
-      return models.efficientnet_b6(pretrained=True)
-    
-    case "efficientnet_b7":
-      return models.efficientnet_b7(pretrained=True)
-    
+      return models.densenet161(weights='IMAGENET1K_V1'), "dense"
+  
     case _:
       raise ValueError(f"Model {model} is not available in the model zoo")
+
+def neural_net_adjuster(model, stringy, node_number):
+  match stringy:
+        case "res":
+          if(node_number == 2):
+            num_ftrs = model.fc.in_features
+            num_classes = 1
+            model.fc = nn.Linear(num_ftrs, num_classes)
+            return model
+          else:
+            num_ftrs = model.fc.in_features
+            num_classes = node_number
+            model.fc = nn.Linear(num_ftrs, num_classes)
+            return model
+
+        case "vgg":
+            print("Option 2 selected")
+        case "alex":
+            print("Option 3 selected")
+        case "squeeze":
+            print("Option 3 selected")
+        case "dense":
+            print("Option 3 selected")
+        case _:
+            raise IndexError("This is an index error")
 
 def recall_fn(y_true, y_pred):
     """Calculates recall between truth labels and predictions.
@@ -482,6 +438,7 @@ def data_loading(filepath):
   test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
   return train_dataloader, test_dataloader
 
+
 def plot_function(test_dataloader, df, device, model, loss_fn, filepath):
   # Set a consistent style
   sns.set_theme()
@@ -623,7 +580,6 @@ def save_model_info(model, epochs, total_train_time, optimizer, loss_fn, file_pa
 def modelsave(model, savepath, model_iter, epochs,
               totalTrainTime, optimizer, loss_fn, 
               modelInfoSavePath, transform):
-  
 
   drive_path = savepath
   drive_path.mkdir(parents=True, exist_ok=True)
@@ -631,11 +587,9 @@ def modelsave(model, savepath, model_iter, epochs,
   # Create a model save path
   modelName = model_iter + '.pth'
   modelSavePath = drive_path / modelName
-
   print(f"SAVING MODEL TO: {modelSavePath}")
 
   # Saving model info to text file
-  
   textName = model_iter + '.txt'
   modelInfoSavePath = drive_path / textName
   save_model_info(model, epochs, totalTrainTime, optimizer, loss_fn, modelInfoSavePath, transform)
@@ -644,11 +598,107 @@ def modelsave(model, savepath, model_iter, epochs,
   # Example model save (replace `model.state_dict()` with your actual model's state dict)
   torch.save(obj=model.state_dict(), f=modelSavePath)
 
+def count_folders(directory):
+  return len([name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))])
+
 def full_experiment(model_type, optimizer,
                     epochs, loss_fn, photo_folder,
                     save_folder):
   
-  model = modelzoo(model_type)
+  model, modelkey = modelzoo(model_type)
   train_dataloader, test_dataloader = data_loading(photo_folder)
   
-  fc
+  output_layer_number = count_folders(photo_folder)
+
+  if(output_layer_number > 2):
+    train_function = train_step_multi
+    test_function = test_step_multi
+  elif(output_layer_number == 2):
+    train_function = train_step_binary
+    test_function = test_step_binary
+  else:
+    raise ValueError("The folder must contain 2+ classes.")
+  
+  model = neural_net_adjuster(model, modelkey,
+                              output_layer_number)
+  device = 'cuda' if torch.cuda.is_available() else "cpu"
+  
+  epochCount = []
+
+  trainLosses = []
+  testLosses = []
+
+  trainAccuracies = []
+  testAccuracies = []
+
+  trainRecalls = []
+  testRecalls = []
+
+  trainPrecisions = []
+  testPrecisions = []
+
+  trainSpeceficities = []
+  testSpeceficities = []
+
+
+  timeStart = timer()
+
+
+  for epoch in tqdm(range(epochs)):
+    print(f"Epoch: {epoch}")
+    print("----------------------------------")
+    train_loss, train_acc, train_recall, train_prec, train_spec = train_function(model = model,
+                                                                          data_loader = train_dataloader,
+                                                                          loss_fn = loss_fn,
+                                                                          optimizer = optimizer,
+                                                                          device = device)
+    print(f"Train loss: {train_loss: 5f} | Train acc: {train_acc:.2f}")
+    
+    test_loss, test_acc, test_recall, test_prec, test_spec= test_function(model = model,
+                                                                    data_loader = test_dataloader,
+                                                                    loss_fn = loss_fn,
+                                                                    optimizer = optimizer,
+                                                                    device = device)
+    print(f"Test loss: {test_loss: 5f} | Test acc: {test_acc:.2f}\n")
+
+    epochCount.append(epoch)
+
+    trainLosses.append(train_loss)
+    testLosses.append(test_loss)
+
+    trainAccuracies.append(train_acc)
+    testAccuracies.append(test_acc)
+
+    trainRecalls.append(train_recall)
+    testRecalls.append(test_recall)
+
+    trainPrecisions.append(train_prec)
+    testPrecisions.append(test_prec)
+
+    trainSpeceficities.append(train_spec)
+    testSpeceficities.append(test_spec)
+
+  timeEnd = timer()
+  totalTrainTime = print_train_time(start = timeStart,
+                                    end = timeEnd,
+                                    device = str(next(model.parameters()).device))
+  
+  epochCount1 = np.array(epochCount)
+  trainLosses1 = np.array([tensor.detach().cpu() for tensor in trainLosses])
+  testLosses1 = np.array([tensor.detach().cpu() for tensor in testLosses])
+  trainAccuracies1 = np.array(trainAccuracies)
+  testAccuracies1 = np.array(testAccuracies)
+
+  df = pd.DataFrame({"Epoch": epochCount1,
+                    "Train Loss": trainLosses1,
+                    "Test Loss": testLosses1,
+                    "Train Accuracy": trainAccuracies1,
+                    "Test Accuracy": testAccuracies1,
+                    "Train Recall": trainRecalls,
+                    "Test Recall": testRecalls,
+                    "Train Precision": trainPrecisions,
+                    "Test Precision": testPrecisions,
+                    "Train Specificity": trainSpeceficities,
+                    "Test Specificity": testSpeceficities})
+  
+  plot_function(test_dataloader, df, device, model, loss_fn, save_folder)
