@@ -90,6 +90,40 @@ def modelzoo(model):
   
     case _:
       raise ValueError(f"Model {model} is not available in the model zoo")
+     
+def optimizerzoo(model: nn.Module, optimizer_name: str, **kwargs) -> torch.optim.Optimizer:
+    """Returns an optimizer based on the optimizer name and model parameters.
+    
+    Args:
+        model (nn.Module): The model whose parameters will be optimized.
+        optimizer_name (str): The name of the optimizer to use.
+        **kwargs: Additional keyword arguments for the optimizer.
+
+    Returns:
+        torch.optim.Optimizer: The optimizer for the model.
+    
+    Raises:
+        ValueError: If the optimizer_name is not recognized.
+    """
+    match optimizer_name:
+        case "adam":
+            return torch.optim.Adam(model.parameters(), **kwargs)
+        case "sgd":
+            return torch.optim.SGD(model.parameters(), **kwargs)
+        case "rmsprop":
+            return torch.optim.RMSprop(model.parameters(), **kwargs)
+        case "adagrad":
+            return torch.optim.Adagrad(model.parameters(), **kwargs)
+        case "adamw":
+            return torch.optim.AdamW(model.parameters(), **kwargs)
+        case "adamax":
+            return torch.optim.Adamax(model.parameters(), **kwargs)
+        case "nadam":
+            return torch.optim.NAdam(model.parameters(), **kwargs)
+        case "asgd":
+            return torch.optim.ASGD(model.parameters(), **kwargs)
+        case _:
+            raise ValueError(f"Optimizer {optimizer_name} is not available in the optimizer zoo")
 
 def neural_net_adjuster(model, stringy, node_number):
   match stringy:
