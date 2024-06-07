@@ -635,9 +635,9 @@ def modelsave(model, savepath, model_iter, epochs,
 def count_folders(directory):
   return len([name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))])
 
-def full_experiment(model_type, optimizer,
-                    epochs, loss_fn, photo_folder,
-                    save_folder):
+def full_experiment(model_type, optimizer_name, 
+                    optimizer_args, epochs,
+                    photo_folder, save_folder):
   
   model, modelkey = modelzoo(model_type)
   train_dataloader, test_dataloader = data_loading(photo_folder)
@@ -647,14 +647,17 @@ def full_experiment(model_type, optimizer,
   if(output_layer_number > 2):
     train_function = train_step_multi
     test_function = test_step_multi
+    loss_fn = nn.CrossEntropyLoss()
   elif(output_layer_number == 2):
     train_function = train_step_binary
     test_function = test_step_binary
+    loss_fn = nn.BCEWithLogitsLoss()
   else:
     raise ValueError("The folder must contain 2+ classes.")
   
   model = neural_net_adjuster(model, modelkey,
                               output_layer_number)
+  optimizer = optimizerzoo(model, optimizer_name, **optimizer_args)
   device = 'cuda' if torch.cuda.is_available() else "cpu"
   
   epochCount = []
