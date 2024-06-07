@@ -581,34 +581,38 @@ def plot_function(test_dataloader, df, device, model, loss_fn, filepath):
   plt.show()
 
 def save_model_info(model, epochs, total_train_time, optimizer, loss_fn, file_path, transform):
-  with open(file_path, 'w') as file:
-      # Model architecture
-      file.write('**Model Architecture:**\n\n')
-      file.write(str(model))
-      file.write('\n\n')
+ with open(file_path, 'w') as file:
+        # Model architecture
+        file.write('# Model Architecture\n\n')
+        file.write('```\n')
+        file.write(str(model))
+        file.write('\n```\n\n')
 
-      # Transformations
-      file.write('**Transformations:**\n\n')
-      file.write(str(transform))
-      file.write('\n\n')
+        # Transformations
+        file.write('# Transformations\n\n')
+        file.write('```\n')
+        file.write(str(transform))
+        file.write('\n```\n\n')
 
-      # Optimizer details
-      file.write('**Optimizer Details:**\n\n')
-      file.write(str(optimizer))
-      file.write('\n\n')
+        # Optimizer details
+        file.write('# Optimizer Details\n\n')
+        file.write('```\n')
+        file.write(str(optimizer))
+        file.write('\n```\n\n')
 
-      # Loss function details
-      file.write('**Loss Function:**\n\n')
-      file.write(str(loss_fn))
-      file.write('\n\n')
+        # Loss function details
+        file.write('# Loss Function\n\n')
+        file.write('```\n')
+        file.write(str(loss_fn))
+        file.write('\n```\n\n')
 
-      # Number of epochs
-      file.write('**Number of Epochs:**\n\n')
-      file.write(f'{epochs}\n\n')
+        # Number of epochs
+        file.write('# Number of Epochs\n\n')
+        file.write(f'{epochs}\n\n')
 
-      # Total training time
-      file.write('**Total Training Time:**\n\n')
-      file.write(f'{total_train_time:.2f} seconds\n')
+        # Total training time
+        file.write('# Total Training Time\n\n')
+        file.write(f'{total_train_time:.2f} seconds\n')
 
 
 def modelsave(model, savepath, model_iter, epochs,
@@ -624,7 +628,7 @@ def modelsave(model, savepath, model_iter, epochs,
   print(f"SAVING MODEL TO: {modelSavePath}")
 
   # Saving model info to text file
-  textName = model_iter + '.txt'
+  textName = model_iter + '.md'
   modelInfoSavePath = drive_path / textName
   save_model_info(model, epochs, totalTrainTime, optimizer, loss_fn, modelInfoSavePath, transform)
   print(f"Model information saved to {modelInfoSavePath}")
