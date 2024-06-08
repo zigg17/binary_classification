@@ -470,7 +470,7 @@ def data_loading(filepath):
   # Create DataLoaders for train and test sets
   train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True)
   test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
-  return train_dataloader, test_dataloader
+  return train_dataloader, test_dataloader, transform
 
 
 def plot_function(test_dataloader, df, device, model, loss_fn, filepath):
@@ -581,43 +581,43 @@ def plot_function(test_dataloader, df, device, model, loss_fn, filepath):
   plt.show()
 
 def save_model_info(model, epochs, total_train_time, optimizer, loss_fn, file_path, transform):
- with open(file_path, 'w') as file:
-        # Model architecture
-        file.write('# Model Architecture\n\n')
-        file.write('```\n')
-        file.write(str(model))
-        file.write('\n```\n\n')
+  with open(file_path, 'w') as file:
+    # Model architecture
+    file.write('# Model Architecture\n\n')
+    file.write('```\n')
+    file.write(str(model))
+    file.write('\n```\n\n')
 
-        # Transformations
-        file.write('# Transformations\n\n')
-        file.write('```\n')
-        file.write(str(transform))
-        file.write('\n```\n\n')
+    # Transformations
+    file.write('# Transformations\n\n')
+    file.write('```\n')
+    file.write(str(transform))
+    file.write('\n```\n\n')
 
-        # Optimizer details
-        file.write('# Optimizer Details\n\n')
-        file.write('```\n')
-        file.write(str(optimizer))
-        file.write('\n```\n\n')
+    # Optimizer details
+    file.write('# Optimizer Details\n\n')
+    file.write('```\n')
+    file.write(str(optimizer))
+    file.write('\n```\n\n')
 
-        # Loss function details
-        file.write('# Loss Function\n\n')
-        file.write('```\n')
-        file.write(str(loss_fn))
-        file.write('\n```\n\n')
+    # Loss function details
+    file.write('# Loss Function\n\n')
+    file.write('```\n')
+    file.write(str(loss_fn))
+    file.write('\n```\n\n')
 
-        # Number of epochs
-        file.write('# Number of Epochs\n\n')
-        file.write(f'{epochs}\n\n')
+    # Number of epochs
+    file.write('# Number of Epochs\n\n')
+    file.write(f'{epochs}\n\n')
 
-        # Total training time
-        file.write('# Total Training Time\n\n')
-        file.write(f'{total_train_time:.2f} seconds\n')
+    # Total training time
+    file.write('# Total Training Time\n\n')
+    file.write(f'{total_train_time:.2f} seconds\n')
 
 
 def modelsave(model, savepath, model_iter, epochs,
               totalTrainTime, optimizer, loss_fn, 
-              modelInfoSavePath, transform):
+              transform):
 
   drive_path = savepath
   drive_path.mkdir(parents=True, exist_ok=True)
@@ -639,12 +639,12 @@ def modelsave(model, savepath, model_iter, epochs,
 def count_folders(directory):
   return len([name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))])
 
-def full_experiment(model_type, optimizer_name, 
-                    optimizer_args, epochs,
-                    photo_folder, save_folder):
+def full_experiment(model_type, model_iter,
+                    optimizer_name, optimizer_args, 
+                    epochs,photo_folder, save_folder,):
   
   model, modelkey = modelzoo(model_type)
-  train_dataloader, test_dataloader = data_loading(photo_folder)
+  train_dataloader, test_dataloader, transform = data_loading(photo_folder)
   
   output_layer_number = count_folders(photo_folder)
 
@@ -743,3 +743,6 @@ def full_experiment(model_type, optimizer_name,
                     "Test Specificity": testSpeceficities})
   
   plot_function(test_dataloader, df, device, model, loss_fn, save_folder)
+
+  modelsave(model, save_folder, model_iter, epochs, totalTrainTime,
+            optimizer, loss_fn, transform)
