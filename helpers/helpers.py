@@ -659,12 +659,12 @@ def full_experiment(model_type, model_iter,
   else:
     raise ValueError("The folder must contain 2+ classes.")
   
+  device = 'cuda' if torch.cuda.is_available() else "cpu"
+  print(f"This code will be executed on: {device}")
   model = neural_net_adjuster(model, modelkey,
                               output_layer_number)
   model = model.to(device)
   optimizer = optimizerzoo(model, optimizer_name, **optimizer_args)
-  device = 'cuda' if torch.cuda.is_available() else "cpu"
-  print(f"This code will be executed on: {device}")
   
   epochCount = []
 
