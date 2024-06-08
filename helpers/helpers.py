@@ -700,7 +700,6 @@ def full_experiment(model_type, model_iter,
     test_loss, test_acc, test_recall, test_prec, test_spec= test_function(model = model,
                                                                     data_loader = test_dataloader,
                                                                     loss_fn = loss_fn,
-                                                                    optimizer = optimizer,
                                                                     device = device)
     print(f"Test loss: {test_loss: 5f} | Test acc: {test_acc:.2f}\n")
 
