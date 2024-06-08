@@ -529,6 +529,9 @@ def plot_function(test_dataloader, df, device, model, loss_fn, filepath):
   y_true_numpy = []
 
   model.eval()
+
+  test_loss = 0
+  test_acc = 0
   with torch.inference_mode():
       for batch, (image, label) in enumerate(test_dataloader):
         # Forward pass
