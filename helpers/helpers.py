@@ -663,6 +663,7 @@ def full_experiment(model_type, model_iter,
                               output_layer_number)
   optimizer = optimizerzoo(model, optimizer_name, **optimizer_args)
   device = 'cuda' if torch.cuda.is_available() else "cpu"
+  print(f"This code will be executed on: {device}")
   
   epochCount = []
 
