@@ -697,7 +697,7 @@ def full_experiment(model_type, model_iter,
                                                                           device = device)
     print(f"Train loss: {train_loss: 5f} | Train acc: {train_acc:.2f}")
     
-    test_loss, test_acc, test_recall, test_prec, test_spec= test_function(model = model,
+    test_loss, test_acc, test_recall, test_prec, test_spec = test_function(model = model,
                                                                     data_loader = test_dataloader,
                                                                     loss_fn = loss_fn,
                                                                     device = device)
