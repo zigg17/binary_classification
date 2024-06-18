@@ -698,13 +698,13 @@ def full_experiment(model_type, model_iter,
                                                                           loss_fn = loss_fn,
                                                                           optimizer = optimizer,
                                                                           device = device)
-    print(f"Train loss: {train_loss: 5f} | Train acc: {train_acc:.2f}")
+    print(f"Train loss: {train_loss: 5f} | Train acc: {train_acc:.2f} | Train rec: {train_recall} | Train prec: {train_prec} | Train spec: {train_spec}")
     
     test_loss, test_acc, test_recall, test_prec, test_spec = test_function(model = model,
                                                                     data_loader = test_dataloader,
                                                                     loss_fn = loss_fn,
                                                                     device = device)
-    print(f"Test loss: {test_loss: 5f} | Test acc: {test_acc:.2f}\n")
+    print(f"Test loss: {test_loss: 5f} | Test acc: {test_acc:.2f} | Test rec: {test_recall} | Train prec: {test_prec} | Train spec: {test_spec}\n")
 
     epochCount.append(epoch)
 
